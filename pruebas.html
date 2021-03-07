@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de javascript</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<!-- Presentado por javascripts-gratis.de -->
+<script type='text/javascript'>
+<!--
+/*
+Este script proviene de Freddus.
+Ustedes lo pueden usar libremente.
+Aunque ustedes no deben cambiar nada y sería agradable
+agregar un link hacia mi página principal (ver abajo).
+El entrenador uno por uno es principalmente para alumnos del 2. al 4. grado.
+*/
+let resultado,puntos,corriendo;
+resultado=5;
+puntos=0;
+corriendo=0;
+function fininicio(){
+ window.status=("Entrenador uno por uno 1.0 by Nobstyle");
+ if (corriendo == 0){
+  corriendo=1;
+  document.getElementById('inicioFin').value="finalizar";
+  document.getElementById('batten').style.visibility="visible";
+  document.getElementById('entrada').style.visibility="visible";
+  document.getElementById('entrada').value="";
+  document.getElementById('entrada').focus();
+  tareanueva();
+ }// fin if
+ else{
+  corriendo=0;
+  document.getElementById('visualizacion').innerHTML="<p align='center'><font color='blue'>Bienvenido al entrenador uno por uno!</font></p>";
+  document.getElementById('inicioFin').value="Ah\u00ED vamos!";
+  document.getElementById('batten').style.visibility="hidden";
+  document.getElementById('entrada').style.visibility="hidden"; 
+  puntos=0;
+  document.getElementById('salidaDePuntos').innerHTML="<font color='green'>Puntos: "+puntos+"</font>";
+ }// fin else
+}// fin function
+
+function tareanueva(){
+ const numero1=Math.ceil(Math.random()*10);
+ const numero2=Math.ceil(Math.random()*10);
+ resultado = numero1*numero2;
+ document.getElementById('visualizacion').innerHTML="<p align='center'><font color='blue'>"+numero1+" x "+numero2+"</font></p>";
+} // fin function
+
+function verificar(){
+ if (document.getElementById('entrada').value == resultado){
+  puntos++;
+  document.getElementById('salidaDePuntos').innerHTML="<font color='green'>Puntos: "+puntos+"</font>";
+  document.getElementById('entrada').value="";
+  document.getElementById('entrada').focus();
+  if (puntos>=50){
+   alert("Estupendo, has ganado el juego!");
+   fininicio();
+  }// fin if
+  else{
+   tareanueva();
+  }// fin else
+ }// fin if
+ else{
+  if (document.getElementById('entrada').value == ""){
+   alert("Tienes que ingresar algo...");
+  }// fin if
+  else{
+   puntos=puntos/2;
+   document.getElementById('salidaDePuntos').innerHTML="<font color='red'>Puntos: "+puntos+"</font>";
+   document.getElementById('entrada').value="";
+   document.getElementById('entrada').focus();
+  }// fin else
+ }// fin else
+} // fin function
+
+window.status=("Entrenador uno por uno 1.0 by Nobstyle");
+//-->
+</script>
+<font align="center">
+<center>
+  <table border="3" width="250" bordercolor="#000080" bordercolorlight="#000080" bordercolordark="#000080">
+ <tr>
+   <td width="100%" id="visualizacion" colspan="2"><p align="center"><font color="blue">Bienvenido al entrenador uno por uno!</font></p></td>
+ </tr>
+ <tr>
+   <td width="100%" colspan="2"><p align="center">
+    <input type="text" id="entrada" size="20" style="visibility:hidden" />
+    <input type="button" value="OK" id="batten" onclick="verificar()" style="visibility:hidden" />
+  </p></td>
+ </tr>
+ <tr>
+   <td width="50%"><p align="center" id="salidaDePuntos"><font color="green">Puntos: 0</font></p></td>
+   <td width="50%"><p align="center">
+    <input type="button" value="Ah&iacute; vamos!" id="inicioFin" onclick="fininicio()" />
+  </p></td>
+ </tr>
+  </table>
+</center>
+</font>
+</body>
+</html>
